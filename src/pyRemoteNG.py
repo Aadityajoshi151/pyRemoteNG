@@ -2,11 +2,11 @@ from tkinter import *
 
 class pyRemoteNG:
     def __init__(self,app):
-        left_panel = Frame(app, bg='blue', width=300, height=app.winfo_screenheight())
-        left_panel.grid(row=1, column=0, sticky="ns")
-        left_panel.grid_propagate(False) 
-        terminal = Frame(app, bg='yellow', width=app.winfo_screenwidth(), height=app.winfo_screenheight(), padx=3, pady=3)
-        terminal.grid(row=1, column=1, sticky="nsew")
+        left_frame = Frame(app, width=300, height=app.winfo_screenheight(), bg="cyan")
+        left_frame.grid(row=0, column=0)
+        left_frame.grid_propagate(False) 
+        terminal_frame = Frame(app, width=app.winfo_screenwidth(), height=app.winfo_screenheight(), bg="green")
+        terminal_frame.grid(row=0, column=1)
 
 def main():
     root=Tk()
