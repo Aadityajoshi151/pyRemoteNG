@@ -8,6 +8,7 @@ class pyRemoteNG:
 def main():
     root=Tk()
     root.title("pyRemoteNG")
+    root.geometry(f"{root.winfo_screenwidth()}x{root.winfo_screenheight()}")
     mymenu = Menu(root)
     root.config(menu=mymenu)
     myfilemenu = Menu(mymenu, tearoff=False)
