@@ -1,13 +1,26 @@
 from tkinter import *
+import sqlite3
 
 class pyRemoteNG:
     def __init__(self,app):
+        #Initialise Database
+        connection_obj = sqlite3.connect("connections.db")
+        cursor = connection_obj.cursor()
+        cursor.execute("""CREATE TABLE connections(
+            connection_name text,
+            hostname text,
+            usernmae text,
+            password text
+            )
+        """)
+        connection_obj.commit()
+        connection_obj.close()
         left_frame = Frame(app, width=300, height=app.winfo_screenheight(), bg="cyan")
         left_frame.grid(row=0, column=0)
         left_frame.grid_propagate(False) 
         terminal_frame = Frame(app, width=app.winfo_screenwidth(), height=app.winfo_screenheight(), bg="green")
         terminal_frame.grid(row=0, column=1)
-        connections = Listbox(left_frame, height=30, width=42, relief=)
+        connections = Listbox(left_frame, height=30, width=42)
         connections.grid(row=0, column=0)
         connections.insert(1, "Test")
 
