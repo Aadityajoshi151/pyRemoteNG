@@ -2,11 +2,22 @@ from tkinter import *
 import sqlite3
 
 class pyRemoteNG:
-    def run_db_query(self, query):
+
+    def populate_connections(self):
+        records = self.run_db_query("select * from connections", True)
+        print(len(records))
+        for i in range(len(records)):
+            self.connections.insert(i+1, records[i][0])
+
+
+    def run_db_query(self, query, fetchall):
         try:
             connection_obj = sqlite3.connect("connections.db")
             cursor = connection_obj.cursor()
-            obj = cursor.execute(query)
+            if fetchall:
+                obj = cursor.execute(query).fetchall()
+            else:
+                obj = cursor.execute(query)
             connection_obj.commit()
             connection_obj.close()
             return obj
@@ -21,15 +32,16 @@ class pyRemoteNG:
             usernmae text,
             password text
             )
-        """)
+        """, False)
         left_frame = Frame(app, width=300, height=app.winfo_screenheight(), bg="cyan")
         left_frame.grid(row=0, column=0)
         left_frame.grid_propagate(False) 
         terminal_frame = Frame(app, width=app.winfo_screenwidth(), height=app.winfo_screenheight(), bg="green")
         terminal_frame.grid(row=0, column=1)
-        connections = Listbox(left_frame, height=30, width=42)
-        connections.grid(row=0, column=0)
-        connections.insert(1, "Test")
+        self.connections = Listbox(left_frame, height=30, width=42)
+        self.connections.grid(row=0, column=0)
+        self.populate_connections()
+        #connections.insert(1, "Test")
 
 def main():
     root=Tk()
