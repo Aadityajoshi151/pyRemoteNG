@@ -7,6 +7,9 @@ class pyRemoteNG:
         left_frame.grid_propagate(False) 
         terminal_frame = Frame(app, width=app.winfo_screenwidth(), height=app.winfo_screenheight(), bg="green")
         terminal_frame.grid(row=0, column=1)
+        connections = Listbox(left_frame, height=30, width=42, relief=)
+        connections.grid(row=0, column=0)
+        connections.insert(1, "Test")
 
 def main():
     root=Tk()
