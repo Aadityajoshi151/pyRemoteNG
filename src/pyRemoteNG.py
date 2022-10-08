@@ -1,4 +1,5 @@
 from tkinter import *
+from tkterminal import Terminal
 import sqlite3
 
 class pyRemoteNG:
@@ -38,6 +39,12 @@ class pyRemoteNG:
         left_frame.grid_propagate(False) 
         terminal_frame = Frame(app, width=app.winfo_screenwidth(), height=app.winfo_screenheight(), bg="green")
         terminal_frame.grid(row=0, column=1)
+        terminal = Terminal(terminal_frame, background="black", foreground="white", height=app.winfo_screenheight(), width=app.winfo_screenwidth())
+        terminal.shell = True
+        terminal.basename = "pyRemoteNG "
+
+        terminal.grid(row=0, column=0)
+
         self.connections = Listbox(left_frame, height=30, width=42)
         self.connections.grid(row=0, column=0)
         self.populate_connections()
